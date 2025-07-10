@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>title</title>
+    <link rel="stylesheet" href="{% static 'myapp/style.css' %}">
+</head>
+<body>
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between">
+                <div class="flex space-x-7"></div>
+                <div>
+                    <a href="" class="flex items-center py-4 px-2">
+                        <span class="text-lg text-gray-500 font-semibold">Adfinder</span>
+                    </a>
+                </div>
+                <div class="md:flex items-center space-x-1"></div>
+            </div>
+            
+        </div>
+
+    </nav>
+    <form class="bg-white m-20 shadow-md mb-4 pb-8 rounded pt-6 px-8" method="POST">
+        {% csrf_token %}
+        <div class="mb-4">
+            <label for="URL" class="Block text-gray-700 text-sm font-bold mb-2">Enter Blog URL</label>
+            <input class="shadow border rounded appearance-none w-full py-2 px-3 text-gray-700 leading-tight focus:outline:none focus:shadow-outline" type="text" id="url" name="url"/>
+        </div>
+        <input class="bg-blue-500 text-white hover-bg-blue-700 font-bold py-2 px-4 rounded" type="submit" />
+    </form>
+    <div class="p-10 m-10">
+        <h3 class="'block text-gray-700 text-sm font-bold mb-2">Common words
+            {% for word in commonwords %}
+            <span class="inline-flex items-center justify-center px-2 py-1 text-xs font-bold text-white bg-green-600 rounded-full">{{word}}</span>
+            {% endfor %}
+        </h3>
+         <h3>Ads found</h3>
+         <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
+            {% for ad in relevantads %}
+            <a href="{{ad.ad_url}}">
+                <div class="rounded shadow-lg overflow-hidden">
+                    <img width='300' height='300' src="{{ad.image}}" alt="">
+                    <div class="font-bold text-xl mb-2">{{ad.name}}</div>
+                </div>
+            </a>
+            {% endfor %}
+         </div>
+        
+    </div>
+</body>
+</html>
