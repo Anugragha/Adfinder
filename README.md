@@ -1,4 +1,4 @@
-# Contectual Adfinder
+# Contextual Adfinder
 A Python Django web application that analyzes the content of any webpage and displays relevant ads based on extracted keywords. It uses Beautiful Soup for HTML parsing, RAKE (Rapid Automatic Keyword Extraction) for keyword extraction, and Tailwind CSS for a responsive, modern UI.
 
 Features
